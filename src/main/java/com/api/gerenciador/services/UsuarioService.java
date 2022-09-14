@@ -15,5 +15,6 @@ public interface UsuarioService {
 
     public UsuarioModel criarUsuario(UsuarioModel usuarioModel);
 
-    void deletarUsuario(Integer codUsuario);
+    public void deletarUsuario(Integer codUsuario);
+
 }

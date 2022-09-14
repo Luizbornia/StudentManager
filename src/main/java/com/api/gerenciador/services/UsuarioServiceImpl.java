@@ -24,7 +24,6 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Override
     public UsuarioModel criarUsuario(UsuarioModel usuarioModel){
         return usuarioRepository.save(usuarioModel);
-
     }
     @Override
     public void deletarUsuario(Integer codUsuario){

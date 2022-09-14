@@ -25,17 +25,6 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    //Metodo para listar todos usuarios
-    @GetMapping("/usuarios")
-    public ResponseEntity<List<UsuarioModel>> listarUsuarios(){
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.listarUsuarios());
-    }
-
-    //Metodo para listar um usuario por ID
-    @GetMapping("/usuario/{codUsuario}")
-    public ResponseEntity<Optional<UsuarioModel>> listarUsuarioPorId(@PathVariable Integer codUsuario){
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.getUsuarioById(codUsuario));
-    }
     //Metodo para criar usuario
     @PostMapping("/usuario")
     public ResponseEntity<UsuarioModel> salvaUsuario(@RequestBody UsuarioModel usuarioModel){
@@ -48,23 +37,19 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.OK).body("Cliente deletado com sucesso");
     }
 
-    //Meotodo para update
-    @PutMapping("/usuario/{codUsuario}")
-    public ResponseEntity<Object> atualizarUsuario (@RequestBody UsuarioModel usuarioModel, @PathVariable Integer codUsuario) {
-        Optional<UsuarioModel> usuario = usuarioService.getUsuarioById(codUsuario);
-        if (usuario.isPresent()) { //Verificar se o usuario puxado existe
-            UsuarioModel usuarioAtualizado = usuario.get(); //instancia um novo usuario recebendo a informações passadas no corpo
-            usuarioAtualizado.setFuncao(usuarioModel.getFuncao());
-            usuarioAtualizado.setNome(usuarioModel.getNome());
-            usuarioAtualizado.setCidade(usuarioAtualizado.getCidade());
-            usuarioAtualizado.setBairro(usuarioAtualizado.getBairro());
-            usuarioAtualizado.setNumero(usuarioAtualizado.getNumero());
-            usuarioAtualizado.setComplemento(usuarioAtualizado.getComplemento());
-            return ResponseEntity.status(HttpStatus.OK).body(usuarioService.criarUsuario(usuarioAtualizado));
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario não encontrado");
-        }
+
+    //Metodo para listar todos usuarios
+    @GetMapping("/usuario")
+    public ResponseEntity<List<UsuarioModel>> listarUsuarios(){
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.listarUsuarios());
     }
+
+    //Metodo para listar um usuario por ID
+    @GetMapping("/usuario/{codUsuario}")
+    public ResponseEntity<Optional<UsuarioModel>> listarUsuarioPorId(@PathVariable Integer codUsuario){
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.getUsuarioById(codUsuario));
+    }
+
     /* Deixar desabilitado por enquanto, com problemas de transferencia dos arquivos DTO para Model
     @PostMapping
     public ResponseEntity<UsuarioModel> criarUsuario(@RequestBody @Valid UsuarioDTO usuarioDTO){
