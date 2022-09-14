@@ -37,7 +37,6 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.OK).body("Cliente deletado com sucesso");
     }
 
-
     //Metodo para listar todos usuarios
     @GetMapping("/usuario")
     public ResponseEntity<List<UsuarioModel>> listarUsuarios(){

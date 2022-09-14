@@ -1,9 +1,7 @@
-package com.api.Gerenciador.services;
+package com.api.gerenciador.services;
 
-import com.api.Gerenciador.dtos.HorarioDTO;
-import com.api.Gerenciador.models.HorarioModel;
-import com.api.Gerenciador.repositories.HorarioRepository;
-import com.api.Gerenciador.repositories.UsuarioRepository;
+import com.api.gerenciador.models.HorarioModel;
+import com.api.gerenciador.repositories.HorarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +12,6 @@ import java.util.Optional;
 public class HorarioServiceImpl implements HorarioService {
     @Autowired
     private HorarioRepository horarioRepository;
-
-    @Autowired
-    private UsuarioRepository usuarioRepository;
 
     public List<HorarioModel> listarHorarios() {
         return horarioRepository.findAll();
@@ -33,24 +28,8 @@ public class HorarioServiceImpl implements HorarioService {
     }
 
     @Override
-    public HorarioModel criarHorario(HorarioDTO horarioModel) {
-        return horarioRepository.save(modelFromDto(horarioModel));
-    }
-
-    @Override
     public void deletarHorario(Integer codHorario) {
         horarioRepository.deleteById(codHorario);
     }
 
-    private HorarioModel modelFromDto(HorarioDTO horarioDTO) {
-        var horarioModel = new HorarioModel();
-
-        horarioModel.setCodHorario(horarioDTO.getCodHorario());
-        horarioModel.setHorario(horarioDTO.getHorario());
-        horarioModel.setPeriodo(horarioDTO.getPeriodo());
-        horarioModel.setDiaDaSemana(horarioDTO.getDiaDaSemana());
-        horarioModel.setProfessor(usuarioRepository.getReferenceById(horarioDTO.getProfessor()));
-
-        return horarioModel;
-    }
 }

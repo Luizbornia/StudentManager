@@ -1,7 +1,6 @@
-package com.api.Gerenciador.services;
+package com.api.gerenciador.services;
 
-import com.api.Gerenciador.dtos.HorarioDTO;
-import com.api.Gerenciador.models.HorarioModel;
+import com.api.gerenciador.models.HorarioModel;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +11,6 @@ public interface HorarioService {
     public Optional<HorarioModel> getHorarioById(Integer codHorario);
 
     public HorarioModel criarHorario(HorarioModel horarioModel);
-    public HorarioModel criarHorario(HorarioDTO horarioModel);
 
-    void deletarHorario(Integer codHorario);
+    public void deletarHorario(Integer codHorario);
 }

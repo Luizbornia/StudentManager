@@ -25,6 +25,6 @@ public class HorarioModel {
     private String horario;
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "UsuarioModel", referencedColumnName = "codUsuario")
-    private UsuarioModel Professor;
+    private UsuarioModel codUsuario;
 
 }
