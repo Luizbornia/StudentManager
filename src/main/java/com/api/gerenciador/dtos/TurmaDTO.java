@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
@@ -18,6 +19,6 @@ public class TurmaDTO {
     private String periodo;
     @NotBlank
     private String semestre;
-    @NotBlank
-    private CursoModel curso;
+    @NotNull
+    private Integer curso;
 }

@@ -6,13 +6,11 @@ import com.api.gerenciador.models.UsuarioModel;
 import com.api.gerenciador.services.HorarioService;
 import com.api.gerenciador.services.UsuarioService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Null;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +29,7 @@ public class HorarioController {
 
     //Metodo para criar horario
     @PostMapping("/horario")
-    public ResponseEntity<HorarioModel> salvaHorario(@RequestBody @Valid HorarioDTO horarioDTO) {
+    public ResponseEntity<HorarioModel> salvaHorario(@Valid @RequestBody HorarioDTO horarioDTO) {
         var horarioModel = new HorarioModel();
         BeanUtils.copyProperties(horarioDTO,horarioModel); //Copia as propriedades do DTO para o Model
 

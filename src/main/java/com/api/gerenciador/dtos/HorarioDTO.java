@@ -1,13 +1,12 @@
 package com.api.gerenciador.dtos;
 
-
-import com.api.gerenciador.models.UsuarioModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Range;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
@@ -21,6 +20,6 @@ public class HorarioDTO {
     private String periodo;
     @NotBlank
     private String horario;
-    @NotBlank
+    @NotNull
     private Integer codUsuario;
 }
