@@ -1,6 +1,7 @@
 package com.api.gerenciador.controllers;
 
 import com.api.gerenciador.dtos.HorarioDTO;
+import com.api.gerenciador.models.FuncaoEnum;
 import com.api.gerenciador.models.HorarioModel;
 import com.api.gerenciador.models.UsuarioModel;
 import com.api.gerenciador.services.HorarioService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -29,7 +31,7 @@ public class HorarioController {
 
     //Metodo para criar horario
     @PostMapping("/horario")
-    public ResponseEntity<HorarioModel> salvaHorario(@Valid @RequestBody HorarioDTO horarioDTO) {
+    public ResponseEntity<Object> salvaHorario(@Valid @RequestBody HorarioDTO horarioDTO) {
         var horarioModel = new HorarioModel();
         BeanUtils.copyProperties(horarioDTO,horarioModel); //Copia as propriedades do DTO para o Model
 
@@ -38,10 +40,15 @@ public class HorarioController {
 
         if(usuarioInformado.isPresent()){ //Verifica se o usuario existe
             UsuarioModel usuarioModel = usuarioInformado.get(); //Passa a informações achadas em Optional para Model
-            horarioModel.setProfessor(usuarioModel); //Setta o professor do Horario com as infos achadas
-            return ResponseEntity.status(HttpStatus.CREATED).body(horarioService.criarHorario(horarioModel));
+            //Verificar se o usuario é do grupo PROFESSOR
+            if(usuarioModel.getFuncao().equals(FuncaoEnum.valueOf("PROFESSOR"))){
+                horarioModel.setProfessor(usuarioModel); //Setta o professor do Horario com as infos achadas
+                return ResponseEntity.status(HttpStatus.CREATED).body(horarioService.criarHorario(horarioModel));
+            }
+
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Usuario informado não é um professor");
         }
-        return null;
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Professor não encontrado");
     }
 
     //Metodo para deletar horario
