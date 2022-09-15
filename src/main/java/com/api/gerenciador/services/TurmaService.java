@@ -10,7 +10,7 @@ public interface TurmaService {
 
     public Optional<TurmaModel> getTurmaById(Integer codTurma);
 
-    public TurmaModel criarHorario(TurmaModel turmaModel);
+    public TurmaModel criarTurma(TurmaModel turmaModel);
 
     public void deletarTurma(Integer codTurma);
 }

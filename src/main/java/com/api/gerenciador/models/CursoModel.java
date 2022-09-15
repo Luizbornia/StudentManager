@@ -12,15 +12,15 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="Curso")
+@Table(name="curso")
 public class CursoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer codCurso;
     @Column(nullable = false,length = 140)
     private String descricao;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "UsuarioModel", referencedColumnName = "codUsuario")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario", referencedColumnName = "codUsuario")
     private UsuarioModel professor;
 
 }

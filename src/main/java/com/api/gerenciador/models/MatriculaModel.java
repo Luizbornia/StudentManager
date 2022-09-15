@@ -11,19 +11,19 @@ import javax.persistence.*;
 @AllArgsConstructor
 
 @Entity
-@Table(name="Matricula")
+@Table(name="matricula")
 public class MatriculaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer codMatricula;
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "UsuarioModel", referencedColumnName = "codUsuario")
+    @JoinColumn(name = "usuario", referencedColumnName = "codUsuario")
     private UsuarioModel usuario;
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "CursoModel", referencedColumnName = "codCurso")
+    @JoinColumn(name = "curso", referencedColumnName = "codCurso")
     private CursoModel curso;
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "TurmaModel", referencedColumnName = "codTurma")
+    @JoinColumn(name = "turma", referencedColumnName = "codTurma")
     private TurmaModel turma;
 
 }

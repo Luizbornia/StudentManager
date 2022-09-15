@@ -12,7 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 
 @Entity
-@Table(name="Turma")
+@Table(name="turma")
 public class TurmaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,7 +24,7 @@ public class TurmaModel {
     @Column(nullable = false)
     private String semestre;
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "CursoModel", referencedColumnName = "codCurso")
+    @JoinColumn(name = "usuario", referencedColumnName = "codCurso")
     private CursoModel curso;
 
 }

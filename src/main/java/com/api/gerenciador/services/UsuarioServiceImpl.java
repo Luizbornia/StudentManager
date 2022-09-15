@@ -10,8 +10,11 @@ import java.util.Optional;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService{
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
+
+    public UsuarioServiceImpl(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
 
     @Override
     public List<UsuarioModel> listarUsuarios(){

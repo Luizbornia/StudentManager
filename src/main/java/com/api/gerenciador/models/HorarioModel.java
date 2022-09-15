@@ -23,8 +23,12 @@ public class HorarioModel {
     private String periodo;
     @Column(nullable = false,length = 50)
     private String horario;
+    /*
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Turma",referencedColumnName = "codTurma")
+    private TurmaModel turma; */
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "UsuarioModel", referencedColumnName = "codUsuario")
-    private UsuarioModel codUsuario;
+    @JoinColumn(name = "Usuario", referencedColumnName = "codUsuario")
+    private UsuarioModel professor;
 
 }

@@ -10,9 +10,13 @@ import java.util.Optional;
 
 @Service
 public class TurmaServiceImpl implements TurmaService {
-    @Autowired
-    private TurmaRepository turmaRepository;
+    private final TurmaRepository turmaRepository;
 
+    public TurmaServiceImpl(TurmaRepository turmaRepository) {
+        this.turmaRepository = turmaRepository;
+    }
+
+    @Override
     public List<TurmaModel> listarTurma() {
         return turmaRepository.findAll();
     }

@@ -6,15 +6,12 @@ import com.api.gerenciador.models.FuncaoEnum;
 import com.api.gerenciador.models.UsuarioModel;
 import com.api.gerenciador.services.UsuarioService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Null;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -22,12 +19,19 @@ import java.util.Optional;
 @RequestMapping("/gerenciador")
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
+
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
+    }
 
     //Metodo para criar usuario
     @PostMapping("/usuario")
-    public ResponseEntity<UsuarioModel> salvaUsuario(@RequestBody UsuarioModel usuarioModel){
+    public ResponseEntity<UsuarioModel> salvaUsuario(@RequestBody @Valid UsuarioDTO usuarioDTO){
+        var usuarioModel = new UsuarioModel();
+        BeanUtils.copyProperties(usuarioDTO,usuarioModel); //Copia as propriedades do DTO para o Model
+        usuarioModel.setFuncao(FuncaoEnum.valueOf(usuarioDTO.getFuncao())); //Converte o valor em String para Enum
+
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.criarUsuario(usuarioModel));
     }
     //Metodo para deletar usuario
@@ -48,16 +52,5 @@ public class UsuarioController {
     public ResponseEntity<Optional<UsuarioModel>> listarUsuarioPorId(@PathVariable Integer codUsuario){
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.getUsuarioById(codUsuario));
     }
-
-    /* Deixar desabilitado por enquanto, com problemas de transferencia dos arquivos DTO para Model
-    @PostMapping
-    public ResponseEntity<UsuarioModel> criarUsuario(@RequestBody @Valid UsuarioDTO usuarioDTO){
-        var usuarioModel = new UsuarioModel();
-        BeanUtils.copyProperties(usuarioDTO,usuarioModel);
-        usuarioModel.setFuncao(FuncaoEnum.valueOf(usuarioDTO.getFuncao()));
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.criarUsuario(usuarioModel));
-
-    } */
-
 
 }

@@ -10,8 +10,11 @@ import java.util.Optional;
 
 @Service
 public class HorarioServiceImpl implements HorarioService {
-    @Autowired
-    private HorarioRepository horarioRepository;
+    private final HorarioRepository horarioRepository;
+
+    public HorarioServiceImpl(HorarioRepository horarioRepository) {
+        this.horarioRepository = horarioRepository;
+    }
 
     public List<HorarioModel> listarHorarios() {
         return horarioRepository.findAll();

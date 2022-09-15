@@ -12,7 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 
 @Entity
-@Table(name="Notas")
+@Table(name="notas")
 public class NotaModel {
 
     @Id
@@ -29,6 +29,6 @@ public class NotaModel {
     @Column(nullable = false)
     private Integer notaFinal;
     @OneToOne (fetch = FetchType.EAGER)
-    @JoinColumn(name = "MatriculaModel", referencedColumnName = "codMatricula")
+    @JoinColumn(name = "matricula", referencedColumnName = "codMatricula")
     private MatriculaModel aluno;
 }
