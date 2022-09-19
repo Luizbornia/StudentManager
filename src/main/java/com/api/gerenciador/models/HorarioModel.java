@@ -27,7 +27,7 @@ public class HorarioModel {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Turma",referencedColumnName = "codTurma")
     private TurmaModel turma; */
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Usuario", referencedColumnName = "codUsuario")
     private UsuarioModel professor;
 

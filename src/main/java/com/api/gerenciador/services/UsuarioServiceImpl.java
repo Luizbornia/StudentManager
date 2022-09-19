@@ -1,5 +1,6 @@
 package com.api.gerenciador.services;
 
+import com.api.gerenciador.models.FuncaoEnum;
 import com.api.gerenciador.models.UsuarioModel;
 import com.api.gerenciador.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,10 @@ public class UsuarioServiceImpl implements UsuarioService{
     public void deletarUsuario(Integer codUsuario){
         usuarioRepository.deleteById(codUsuario);
     }
+    @Override
+    public UsuarioModel atualizarUsuario(UsuarioModel usuarioModel){
+        return usuarioRepository.save(usuarioModel);
+    }
+
 
 }

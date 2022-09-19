@@ -2,7 +2,6 @@ package com.api.gerenciador.services;
 
 import com.api.gerenciador.models.HorarioModel;
 import com.api.gerenciador.repositories.HorarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +15,7 @@ public class HorarioServiceImpl implements HorarioService {
         this.horarioRepository = horarioRepository;
     }
 
+    @Override
     public List<HorarioModel> listarHorarios() {
         return horarioRepository.findAll();
     }
@@ -35,4 +35,8 @@ public class HorarioServiceImpl implements HorarioService {
         horarioRepository.deleteById(codHorario);
     }
 
+    @Override
+    public HorarioModel atualizarHorario(HorarioModel horarioModel){
+        return horarioRepository.save(horarioModel);
+    };
 }

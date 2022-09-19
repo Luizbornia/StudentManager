@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Optional;
+
 
 
 @Data
@@ -35,6 +35,5 @@ public class UsuarioModel {
     private String numero;
     @Column(length = 140)
     private String complemento;
-
 
 }

@@ -29,8 +29,5 @@ public class UsuarioDTO {
     private String numero;
     private String complemento;
 
-    public String getFuncao(){
-        return this.funcao;
-    }
 
 }

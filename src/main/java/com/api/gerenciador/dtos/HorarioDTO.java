@@ -1,5 +1,6 @@
 package com.api.gerenciador.dtos;
 
+import com.api.gerenciador.models.UsuarioModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,5 +22,5 @@ public class HorarioDTO {
     @NotBlank
     private String horario;
     @NotNull
-    private Integer codUsuario;
+    private UsuarioModel professor;
 }

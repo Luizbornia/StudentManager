@@ -13,4 +13,6 @@ public interface HorarioService {
     public HorarioModel criarHorario(HorarioModel horarioModel);
 
     public void deletarHorario(Integer codHorario);
+
+    public HorarioModel atualizarHorario(HorarioModel horarioModel);
 }

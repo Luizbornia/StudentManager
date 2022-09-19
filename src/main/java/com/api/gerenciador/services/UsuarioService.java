@@ -1,12 +1,8 @@
 package com.api.gerenciador.services;
 
 import com.api.gerenciador.models.UsuarioModel;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalInt;
 
 public interface UsuarioService {
     public List<UsuarioModel> listarUsuarios();
@@ -16,5 +12,7 @@ public interface UsuarioService {
     public UsuarioModel criarUsuario(UsuarioModel usuarioModel);
 
     public void deletarUsuario(Integer codUsuario);
+
+    public UsuarioModel atualizarUsuario(UsuarioModel usuarioModel);
 
 }
