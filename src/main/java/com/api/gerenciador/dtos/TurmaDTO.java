@@ -19,6 +19,7 @@ public class TurmaDTO {
     private String periodo;
     @NotBlank
     private String semestre;
+    /*
     @NotNull
-    private Integer curso;
+    private Integer curso; */
 }

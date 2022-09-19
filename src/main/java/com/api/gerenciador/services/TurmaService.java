@@ -13,4 +13,6 @@ public interface TurmaService {
     public TurmaModel criarTurma(TurmaModel turmaModel);
 
     public void deletarTurma(Integer codTurma);
+
+    public TurmaModel atualizarTurma(TurmaModel turmaModel);
 }

@@ -23,8 +23,9 @@ public class TurmaModel {
     private String periodo;
     @Column(nullable = false)
     private String semestre;
+    /*
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario", referencedColumnName = "codCurso")
-    private CursoModel curso;
+    private CursoModel curso;*/
 
 }

@@ -36,4 +36,9 @@ public class TurmaServiceImpl implements TurmaService {
         turmaRepository.deleteById(codTurma);
     }
 
+    @Override
+    public TurmaModel atualizarTurma(TurmaModel turmaModel){
+        return turmaRepository.save(turmaModel);
+    }
+
 }

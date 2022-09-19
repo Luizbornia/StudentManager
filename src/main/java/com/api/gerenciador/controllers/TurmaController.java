@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/gerenciador")
 public class TurmaController {
 
@@ -39,7 +38,7 @@ public class TurmaController {
     @PostMapping("/turma")
     public ResponseEntity<TurmaModel> salvaTurma(@RequestBody @Valid TurmaDTO turmaDTO) {
         var turmaModel = new TurmaModel();
-        BeanUtils.copyProperties(turmaDTO,turmaModel); //Converte o valor em String para Enum
+        BeanUtils.copyProperties(turmaDTO,turmaModel); //Converte DTO para Model
         return ResponseEntity.status(HttpStatus.CREATED).body(turmaService.criarTurma(turmaModel));
     }
 
@@ -48,5 +47,16 @@ public class TurmaController {
     public ResponseEntity<String> deletarTurma(@PathVariable Integer codTurma) {
         turmaService.deletarTurma(codTurma);
         return ResponseEntity.status(HttpStatus.OK).body("Cliente deletado com sucesso");
+    }
+
+    @PutMapping("/turma/{codTurma}")
+    public ResponseEntity<TurmaModel> atualizarTurma(@PathVariable Integer codTurma, @RequestBody @Valid TurmaDTO turmaDTO){
+       var turmaInformada = turmaService.getTurmaById(codTurma);
+       if(turmaInformada.isPresent()){
+           var turmaModel = turmaInformada.get();
+           BeanUtils.copyProperties(turmaDTO,turmaModel);
+           return ResponseEntity.status(HttpStatus.OK).body(turmaService.atualizarTurma(turmaModel));
+       }
+     return ResponseEntity.notFound().build();
     }
 }
