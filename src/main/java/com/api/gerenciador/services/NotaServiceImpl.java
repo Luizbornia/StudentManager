@@ -1,10 +1,9 @@
 package com.api.gerenciador.services;
 
+import com.api.gerenciador.models.MatriculaModel;
 import com.api.gerenciador.models.NotaModel;
-import com.api.gerenciador.repositories.HorarioRepository;
 import com.api.gerenciador.repositories.NotaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,8 +34,8 @@ public class NotaServiceImpl implements NotaService{
     }
 
     @Override
-    public Optional<NotaModel> getNotaByMatricula(Integer codMatricula){
-
+    public Optional<NotaModel> getNotasByMatricula(MatriculaModel matriculaModel){
+        return notaRepository.getNotasByMatricula(matriculaModel);
     }
 
 }
