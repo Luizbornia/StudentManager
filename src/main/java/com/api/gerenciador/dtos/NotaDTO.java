@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,15 +16,15 @@ import javax.validation.constraints.NotBlank;
 public class NotaDTO {
 
     @NotBlank
-    private Integer semestre;
+    private String semestre;
     @NotBlank
+    private String materia;
+    @NotNull
     private Float notaProvaUm;
-    @NotBlank
-    private Float notProvaDois;
-    @NotBlank
+    @NotNull
+    private Float notaProvaDois;
+    @NotNull
     private Float notaProvaFinal;
-    @NotBlank
-    private Float notaFinal;
-    /*@NotBlank
-    private MatriculaModel matricula;*/
+    @NotNull
+    private MatriculaModel matricula;
 }

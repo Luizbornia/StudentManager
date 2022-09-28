@@ -2,7 +2,6 @@ package com.api.gerenciador.services;
 
 import com.api.gerenciador.models.TurmaModel;
 import com.api.gerenciador.repositories.TurmaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

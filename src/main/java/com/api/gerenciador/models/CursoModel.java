@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
@@ -13,13 +14,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="curso")
-public class CursoModel {
+public class CursoModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer codCurso;
     @Column(nullable = false,length = 140)
     private String descricao;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario", referencedColumnName = "codUsuario")
     private UsuarioModel professor;
 

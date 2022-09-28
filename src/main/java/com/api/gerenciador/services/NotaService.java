@@ -1,6 +1,5 @@
 package com.api.gerenciador.services;
 
-import com.api.gerenciador.models.MatriculaModel;
 import com.api.gerenciador.models.NotaModel;
 
 import java.util.List;
@@ -16,5 +15,7 @@ public interface NotaService {
 
     public void deletarNota(Integer codNota);
 
-    public Optional<NotaModel> getNotasByMatricula(MatriculaModel matriculaModel);
+    public Optional<NotaModel> getNotasByMatricula(Integer codMatricula);
+
+    public NotaModel atualizarNota(NotaModel notaModel);
 }

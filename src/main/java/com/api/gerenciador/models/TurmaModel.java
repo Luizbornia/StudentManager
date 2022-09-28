@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
@@ -13,7 +14,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="turma")
-public class TurmaModel {
+public class TurmaModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer codTurma;
@@ -23,9 +24,8 @@ public class TurmaModel {
     private String periodo;
     @Column(nullable = false)
     private String semestre;
-    /*
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario", referencedColumnName = "codCurso")
-    private CursoModel curso;*/
+    private CursoModel curso;
 
 }

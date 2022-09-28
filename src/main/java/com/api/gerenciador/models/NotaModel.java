@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
@@ -13,22 +14,24 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="notas")
-public class NotaModel {
+public class NotaModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer codNotas;
     @Column(nullable = false)
-    private Integer semestre;
+    private String materia;
     @Column(nullable = false)
-    private Integer notaProvaUm;
+    private String semestre;
     @Column(nullable = false)
-    private Integer notaProvaDois;
+    private Float notaProvaUm;
     @Column(nullable = false)
-    private Integer notaProvaFinal;
+    private Float notaProvaDois;
     @Column(nullable = false)
-    private Integer notaFinal;
+    private Float notaProvaFinal;
+    @Column(nullable = false)
+    private Float notaFinal;
     @OneToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "matricula", referencedColumnName = "codMatricula")
-    private MatriculaModel aluno;
+    private MatriculaModel matricula;
 }

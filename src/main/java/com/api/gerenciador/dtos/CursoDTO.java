@@ -1,24 +1,24 @@
 package com.api.gerenciador.dtos;
 
-import com.api.gerenciador.models.CursoModel;
+import com.api.gerenciador.models.UsuarioModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class TurmaDTO {
+@NoArgsConstructor
+
+public class CursoDTO {
 
     @NotBlank
-    private String numeracao;
-    @NotBlank
-    private String periodo;
-    @NotBlank
-    private String semestre;
+    private String descricao;
     @NotNull
-    private CursoModel curso;
+    private UsuarioModel professor;
+
+
 }
