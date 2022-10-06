@@ -4,6 +4,11 @@ import com.api.gerenciador.dtos.UsuarioDTO;
 import com.api.gerenciador.models.FuncaoEnum;
 import com.api.gerenciador.models.UsuarioModel;
 import com.api.gerenciador.services.UsuarioService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import org.aspectj.apache.bcel.classfile.Code;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +21,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/gerenciador")
+@Api("Api Usuario")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
@@ -56,6 +62,13 @@ public class UsuarioController {
 
     //Metodo para listar todos usuarios
     @GetMapping("/usuario")
+    @ApiOperation("Obter Usuario")
+    @ApiResponses(
+            {
+                    @ApiResponse(code = 200, message = "Usuario encontrado"),
+                    @ApiResponse(code = 404, message = "Usuario nao encontrado")
+            }
+    )
     public ResponseEntity<List<UsuarioModel>> listarUsuarios(){
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.listarUsuarios());
     }
